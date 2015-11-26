@@ -1,6 +1,7 @@
 // Nombre
 // Fecha
 // Github ok?
+// Desktop ook?
 
 // Importamos librerías
 #include <stdio.h>
