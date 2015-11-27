@@ -72,11 +72,11 @@ int main() {
   // Con respecto al archivo que guarda la información de los usuarios.
   // Si el archivo no existe, creamos uno y pedimos los datos el administrador. 
   // Si existe el archivo, guardamos su información dentro del arreglo de estructuras usuario[]
-  archivo = fopen("usuarios.dat", "rb");
+  archivo = fopen("archivos/usuarios.dat", "rb");
 
   if (archivo == NULL) {
 
-    archivo = fopen("usuarios.dat", "wb");
+    archivo = fopen("archivos/usuarios.dat", "wb");
 
     for (i = 0; i < NUMUSUARIOS; i++) {
 
@@ -201,11 +201,11 @@ int main() {
   // Con respecto al archivo que guarda la información de las sucursales
   // Si el archivo no existe, creamos uno con los datos de las sucursales
   // Si existe el archivo, guardamos su información dentro del arreglo de estructuras sucursal[]
-  archivo = fopen("sucursales.dat", "rb");
+  archivo = fopen("archivos/sucursales.dat", "rb");
 
   if (archivo == NULL) {
 
-    archivo = fopen("sucursales.dat", "wb");
+    archivo = fopen("archivos/sucursales.dat", "wb");
 
     for (i = 0; i < NUMSUCURSALES; i++) {
 
@@ -248,11 +248,11 @@ int main() {
   // Con respecto al archivo que guarda los registros de la bitácora
   // Si el archivo no existe, creamos uno con registros vacíos
   // Si existe el archivo, guardamos su información dentro del arreglo de estructuras bitacora[]
-  archivo = fopen("bitacora.dat", "rb");
+  archivo = fopen("archivos/bitacora.dat", "rb");
 
   if (archivo == NULL) {
 
-    archivo = fopen("bitacora.dat", "wb");
+    archivo = fopen("archivos/bitacora.dat", "wb");
 
     for (i = 0; i < NUMREGISTROS; i++) {
 
@@ -285,15 +285,25 @@ int main() {
     printf("%d\n", usuario[0].num_cuenta);
     printf("%s\n", usuario[0].nombre);
     printf("%d\n", usuario[0].password);
-    printf("SANCENDER. Inicio de sesión\n");
 
-    printf("Número de cuenta: ");
-    scanf("%d", &login_id);
-    getchar();
+    do {
+      printf("\nSANCENDER. Inicio de sesión\n");
 
-    printf("NIP: ");
-    scanf("%d", &login_pass);
-    getchar();
+      printf("Número de cuenta: ");
+      scanf("%d", &login_id);
+      getchar();
+
+      printf("NIP: ");
+      scanf("%d", &login_pass);
+      getchar();
+
+      if (login_pass < 1000 || login_pass > 9999) {
+
+        printf("\nAl parecer tu NIP o número de cuenta está mal escrito. Intenta de nuevo.\n");
+
+      }
+
+    } while (login_pass < 1000 || login_pass > 9999);
 
     // Comprobamos las credenciales
 
@@ -482,8 +492,16 @@ int main() {
   } while(kill == 0);  
 
   // Una vez que desea terminar el programa, abrimos los archivos y guardamos la información que se generó
-  archivo = fopen("usuarios.dat", "wb");
+  archivo = fopen("archivos/usuarios.dat", "wb");
   fwrite(usuario, sizeof(usuario), 1, archivo);
+  fclose(archivo);
+
+  archivo = fopen("archivos/sucursales.dat", "wb");
+  fwrite(sucursal, sizeof(sucursal), 1, archivo);
+  fclose(archivo);
+
+  archivo = fopen("archivos/bitacora.dat", "wb");
+  fwrite(bitacora, sizeof(bitacora), 1, archivo);
   fclose(archivo);
 
   return 0;
