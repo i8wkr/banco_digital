@@ -57,7 +57,17 @@ struct info_bitacora {
 
 // Incluimos archivos externos que contienen las funciones
 // NOTA: Se incluyen despúes de declarar nuestra estructura para evitar error
-#include "admin/altabaja.h"        // Dar de alta o baja a un usuario específico
+#include "admin/altabaja.h"           // Dar de alta o baja a un usuario específico
+#include "admin/transferencia.h"      // Transferencia de dinero a cajero
+#include "admin/estado.h"             // Mostrar el estado de los cajeros
+#include "admin/reporte.h"            // Dar de alta o baja a un usuario específico
+#include "admin/ayuda.h"              // Dar de alta o baja a un usuario específico
+
+#include "user/retirocheques.h"       // Dar de alta o baja a un usuario específico
+#include "user/retirocredito.h"       // Dar de alta o baja a un usuario específico
+#include "user/saldocheques.h"        // Dar de alta o baja a un usuario específico
+#include "user/saldocredito.h"        // Dar de alta o baja a un usuario específico
+#include "user/pago.h"                // Dar de alta o baja a un usuario específico
 
 int main() {
 
@@ -365,23 +375,23 @@ int main() {
               break;
 
             case 2:
-              
+              transferencia(usuario, sucursal, bitacora, NUMUSUARIOS, NUMSUCURSALES, NUMREGISTROS);
               break;
 
             case 3:
-              
+              estado(usuario, sucursal, bitacora, NUMUSUARIOS, NUMSUCURSALES, NUMREGISTROS);
               break;
        
             case 4:
-              
+              reporte(usuario, sucursal, bitacora, NUMUSUARIOS, NUMSUCURSALES, NUMREGISTROS);
               break;
 
             case 5:
-              
+              ayuda(usuario, sucursal, bitacora, NUMUSUARIOS, NUMSUCURSALES, NUMREGISTROS);
               break;
 
             case 6:
-              
+              //Salir del programa
               break;
 
             case 7:
@@ -449,23 +459,23 @@ int main() {
           switch(opc) {
 
             case 1:
-            
+              retirocheques(usuario, sucursal, bitacora, NUMUSUARIOS, NUMSUCURSALES, NUMREGISTROS);
               break;
 
             case 2:
-              
+              retirocredito(usuario, sucursal, bitacora, NUMUSUARIOS, NUMSUCURSALES, NUMREGISTROS);
               break;
 
             case 3:
-              
+              saldocheques(usuario, sucursal, bitacora, NUMUSUARIOS, NUMSUCURSALES, NUMREGISTROS);
               break;
        
             case 4:
-              
+              saldocredito(usuario, sucursal, bitacora, NUMUSUARIOS, NUMSUCURSALES, NUMREGISTROS);
               break;
 
             case 5:
-              
+              pago(usuario, sucursal, bitacora, NUMUSUARIOS, NUMSUCURSALES, NUMREGISTROS);
               break;
 
             case 6:
